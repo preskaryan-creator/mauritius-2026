@@ -21,34 +21,39 @@ body{margin:0;background:
 a{color:inherit}.app{max-width:1040px;margin:auto;padding:14px 18px 72px}
 .hero{min-height:610px;position:relative;overflow:hidden;border-radius:36px;padding:34px;
  background:
- linear-gradient(125deg,rgba(3,22,26,.94) 0%,rgba(6,46,49,.76) 45%,rgba(10,119,111,.45) 100%),
+ linear-gradient(108deg,rgba(4,26,28,.76) 0%,rgba(7,55,57,.60) 34%,rgba(11,98,95,.42) 66%,rgba(27,149,138,.24) 100%),
  url("https://expatriation-maurice.com/wp-content/uploads/2023/01/grand-baie.jpg") center/cover;
- box-shadow:0 32px 80px rgba(3,30,32,.22);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(2,15,18,.52));pointer-events:none}
-.heroTop,.heroBottom{position:relative;z-index:2}
+ box-shadow:0 32px 80px rgba(3,30,32,.18);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.hero:before{content:"";position:absolute;inset:0;background:
+ radial-gradient(circle at 18% 34%,rgba(9,33,36,.34),transparent 34rem),
+ radial-gradient(circle at 80% 24%,rgba(110,211,196,.12),transparent 22rem);
+ pointer-events:none}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,18,20,.10) 0%,rgba(6,18,20,.14) 38%,rgba(3,14,17,.28) 100%);pointer-events:none}
+.heroMain,.heroBottom{position:relative;z-index:2}
+.heroMain{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);gap:28px;align-items:center;min-height:420px}
+.heroTop{position:relative;z-index:2;max-width:560px}
 .heroCoupleWrap{
- position:absolute;right:24px;bottom:24px;z-index:1;
- width:min(43%,430px);pointer-events:none
+ position:relative;z-index:2;width:100%;max-width:430px;justify-self:end;pointer-events:none
 }
 .heroCouple{
  display:block;width:100%;height:auto;
- border-radius:28px;
- box-shadow:0 24px 70px rgba(0,0,0,.28);
- border:1px solid rgba(255,255,255,.22);
- transform:rotate(2deg)
+ border-radius:30px;
+ box-shadow:0 24px 70px rgba(0,0,0,.24);
+ border:1px solid rgba(255,255,255,.20);
+ transform:rotate(1.2deg)
 }
 .brand{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brandMark{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .brandDot{width:11px;height:11px;border-radius:99px;background:#9ff1df;box-shadow:0 0 0 7px rgba(159,241,223,.12)}
-.shareHint{font-size:12px;color:#d7ece9;padding:9px 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(10px)}
-.eyebrow{margin-top:75px;font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:#b9e6de;font-weight:750}
-h1{font-size:clamp(48px,9vw,92px);line-height:.9;letter-spacing:-.065em;margin:12px 0 20px;max-width:790px}
-.heroSub{max-width:660px;color:#d8eeeb;font-size:18px;line-height:1.55;margin:0}
+.shareHint{font-size:12px;color:#dff2ef;padding:9px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.10);backdrop-filter:blur(10px)}
+.eyebrow{margin-top:8px;font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:#c7ece6;font-weight:750}
+h1{font-size:clamp(48px,8vw,88px);line-height:.92;letter-spacing:-.065em;margin:12px 0 20px;max-width:640px}
+.heroSub{max-width:540px;color:#e2f0ee;font-size:18px;line-height:1.58;margin:0}
 .heroBottom{display:grid;grid-template-columns:1.45fr .75fr;gap:14px;align-items:end}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .stat{padding:14px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);border-radius:18px;backdrop-filter:blur(12px)}
-.stat small{display:block;color:#c6dfdc;font-size:11px;margin-bottom:5px}.stat strong{font-size:17px}
-.countdown{padding:17px 18px;border-radius:20px;background:#e8f8f2;color:#0c403d;box-shadow:0 10px 30px rgba(1,22,23,.14)}
+.stat small{display:block;color:#d0e5e1;font-size:11px;margin-bottom:5px}.stat strong{font-size:17px}
+.countdown{padding:17px 18px;border-radius:20px;background:rgba(235,248,242,.92);color:#0c403d;box-shadow:0 10px 30px rgba(1,22,23,.12)}
 .countdown small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.09em;opacity:.7;margin-bottom:5px}.countdown strong{font-size:24px;letter-spacing:-.03em}
 
 .nav{position:sticky;top:10px;z-index:50;margin:14px 0 20px;padding:8px;display:flex;gap:6px;overflow:auto;background:rgba(255,255,255,.88);border:1px solid rgba(221,230,227,.9);border-radius:18px;backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(8,37,38,.07)}
@@ -111,13 +116,16 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
 
 @media(max-width:720px){
  .app{padding:8px 9px 48px}
- .hero{min-height:760px;border-radius:28px;padding:23px 20px}
+ .hero{min-height:auto;border-radius:28px;padding:23px 20px}
+ .heroMain{grid-template-columns:1fr;gap:18px;min-height:auto}
+ .heroTop{max-width:none}
  .heroCoupleWrap{
-   right:50%;bottom:132px;transform:translateX(50%);
-   width:min(82%,360px)
+   justify-self:center;
+   max-width:360px;
+   width:min(88%,360px)
  }
  .heroCouple{transform:none}
- .eyebrow{margin-top:85px}
+ .eyebrow{margin-top:10px}
  .heroBottom{grid-template-columns:1fr}
  .stats{grid-template-columns:repeat(2,1fr)}
  .overview{grid-template-columns:1fr}
@@ -136,14 +144,16 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
 <body>
 <div class="app">
 <header class="hero">
- <div class="heroTop">
-  <div class="brand"><div class="brandMark"><span class="brandDot"></span>Travel Journal</div><div class="shareHint">18–27 сентября 2026</div></div>
-  <div class="eyebrow">Indian Ocean · Mauritius</div>
-  <h1>Стамбул →<br>Маврикий</h1>
-  <p class="heroSub">Один маршрут на десять дней: перелёты, отели, сафари, китовая прогулка, Le Morne, Chamarel и север острова — без хаоса между бронями и чатами.</p>
- </div>
- <div class="heroCoupleWrap">
-  <img class="heroCouple" src="hero-couple-flipped.png" alt="Фотография пары на яхте">
+ <div class="heroMain">
+  <div class="heroTop">
+   <div class="brand"><div class="brandMark"><span class="brandDot"></span>Travel Journal</div><div class="shareHint">18–27 сентября 2026</div></div>
+   <div class="eyebrow">Indian Ocean · Mauritius</div>
+   <h1>Стамбул →<br>Маврикий</h1>
+   <p class="heroSub">Один маршрут на десять дней: перелёты, отели, сафари, китовая прогулка, Le Morne, Chamarel и север острова — без хаоса между бронями и чатами.</p>
+  </div>
+  <div class="heroCoupleWrap">
+   <img class="heroCouple" src="hero-couple-flipped.png" alt="Фотография пары на яхте">
+  </div>
  </div>
  <div class="heroBottom">
   <div class="stats">
