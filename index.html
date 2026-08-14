@@ -19,41 +19,67 @@ body{margin:0;background:
  linear-gradient(180deg,#edf6f3 0,#f7f8f5 420px,var(--bg) 100%);
  color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 a{color:inherit}.app{max-width:1040px;margin:auto;padding:14px 18px 72px}
-.hero{min-height:610px;position:relative;overflow:hidden;border-radius:36px;padding:34px;
+.hero{min-height:640px;position:relative;overflow:hidden;border-radius:36px;padding:28px;
  background:
- linear-gradient(108deg,rgba(4,26,28,.76) 0%,rgba(7,55,57,.60) 34%,rgba(11,98,95,.42) 66%,rgba(27,149,138,.24) 100%),
+ linear-gradient(112deg,rgba(4,24,27,.58) 0%,rgba(8,52,55,.48) 34%,rgba(13,101,96,.34) 66%,rgba(47,170,156,.20) 100%),
  url("https://expatriation-maurice.com/wp-content/uploads/2023/01/grand-baie.jpg") center/cover;
- box-shadow:0 32px 80px rgba(3,30,32,.18);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+ box-shadow:0 32px 80px rgba(3,30,32,.16);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
 .hero:before{content:"";position:absolute;inset:0;background:
- radial-gradient(circle at 18% 34%,rgba(9,33,36,.34),transparent 34rem),
- radial-gradient(circle at 80% 24%,rgba(110,211,196,.12),transparent 22rem);
+ radial-gradient(circle at 18% 32%,rgba(10,36,39,.28),transparent 34rem),
+ radial-gradient(circle at 80% 20%,rgba(163,238,224,.09),transparent 22rem),
+ linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
  pointer-events:none}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,18,20,.10) 0%,rgba(6,18,20,.14) 38%,rgba(3,14,17,.28) 100%);pointer-events:none}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,16,18,.05) 0%,rgba(5,16,18,.10) 38%,rgba(3,14,17,.18) 100%);pointer-events:none}
 .heroMain,.heroBottom{position:relative;z-index:2}
-.heroMain{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);gap:28px;align-items:center;min-height:420px}
-.heroTop{position:relative;z-index:2;max-width:560px}
+.heroMain{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(360px,.94fr);gap:24px;align-items:stretch;min-height:430px}
+.heroTop{
+ position:relative;z-index:2;max-width:none;min-height:430px;
+ display:flex;flex-direction:column;justify-content:space-between;
+ padding:20px 22px;border-radius:30px;
+ background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06));
+ border:1px solid rgba(255,255,255,.14);
+ backdrop-filter:blur(18px) saturate(120%);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 24px 48px rgba(3,18,20,.12)
+}
+.heroText{max-width:560px}
 .heroCoupleWrap{
- position:relative;z-index:2;width:100%;max-width:430px;justify-self:end;pointer-events:none
+ position:relative;z-index:2;width:100%;max-width:430px;justify-self:end;pointer-events:none;
+ min-height:430px;padding:12px;border-radius:34px;
+ background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
+ border:1px solid rgba(255,255,255,.18);
+ backdrop-filter:blur(18px) saturate(120%);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 26px 60px rgba(3,18,20,.15)
 }
 .heroCouple{
- display:block;width:100%;height:auto;
- border-radius:30px;
- box-shadow:0 24px 70px rgba(0,0,0,.24);
- border:1px solid rgba(255,255,255,.20);
- transform:rotate(1.2deg)
+ display:block;width:100%;height:100%;object-fit:cover;
+ border-radius:24px;
+ box-shadow:0 16px 40px rgba(0,0,0,.18);
+ border:1px solid rgba(255,255,255,.14);
+ transform:none
 }
 .brand{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brandMark{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .brandDot{width:11px;height:11px;border-radius:99px;background:#9ff1df;box-shadow:0 0 0 7px rgba(159,241,223,.12)}
-.shareHint{font-size:12px;color:#dff2ef;padding:9px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.10);backdrop-filter:blur(10px)}
-.eyebrow{margin-top:8px;font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:#c7ece6;font-weight:750}
+.shareHint{font-size:12px;color:#e7f6f3;padding:10px 14px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.10);backdrop-filter:blur(14px)}
+.eyebrow{margin-top:8px;font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:#d3f0ea;font-weight:750}
 h1{font-size:clamp(48px,8vw,88px);line-height:.92;letter-spacing:-.065em;margin:12px 0 20px;max-width:640px}
-.heroSub{max-width:540px;color:#e2f0ee;font-size:18px;line-height:1.58;margin:0}
-.heroBottom{display:grid;grid-template-columns:1.45fr .75fr;gap:14px;align-items:end}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.stat{padding:14px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);border-radius:18px;backdrop-filter:blur(12px)}
-.stat small{display:block;color:#d0e5e1;font-size:11px;margin-bottom:5px}.stat strong{font-size:17px}
-.countdown{padding:17px 18px;border-radius:20px;background:rgba(235,248,242,.92);color:#0c403d;box-shadow:0 10px 30px rgba(1,22,23,.12)}
+.heroSub{max-width:560px;color:#edf7f5;font-size:18px;line-height:1.6;margin:0}
+.heroBottom{display:grid;grid-template-columns:1.45fr .75fr;gap:14px;align-items:stretch;margin-top:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{
+ padding:15px 16px;
+ background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.07));
+ border:1px solid rgba(255,255,255,.14);
+ border-radius:20px;backdrop-filter:blur(16px) saturate(120%);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.08)
+}
+.stat small{display:block;color:#e0f0ed;font-size:11px;margin-bottom:5px}.stat strong{font-size:17px}
+.countdown{
+ padding:18px 20px;border-radius:22px;
+ background:linear-gradient(180deg,rgba(244,251,248,.92),rgba(232,246,240,.88));
+ color:#0c403d;box-shadow:0 12px 28px rgba(1,22,23,.10);
+ border:1px solid rgba(255,255,255,.46);backdrop-filter:blur(16px)
+}
 .countdown small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.09em;opacity:.7;margin-bottom:5px}.countdown strong{font-size:24px;letter-spacing:-.03em}
 
 .nav{position:sticky;top:10px;z-index:50;margin:14px 0 20px;padding:8px;display:flex;gap:6px;overflow:auto;background:rgba(255,255,255,.88);border:1px solid rgba(221,230,227,.9);border-radius:18px;backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(8,37,38,.07)}
@@ -116,13 +142,18 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
 
 @media(max-width:720px){
  .app{padding:8px 9px 48px}
- .hero{min-height:auto;border-radius:28px;padding:23px 20px}
- .heroMain{grid-template-columns:1fr;gap:18px;min-height:auto}
- .heroTop{max-width:none}
+ .hero{min-height:auto;border-radius:28px;padding:18px}
+ .heroMain{grid-template-columns:1fr;gap:16px;min-height:auto}
+ .heroTop{
+   max-width:none;min-height:auto;padding:16px 16px 18px;border-radius:24px
+ }
+ .heroText{max-width:none}
  .heroCoupleWrap{
    justify-self:center;
    max-width:360px;
-   width:min(88%,360px)
+   width:min(88%,360px);
+   min-height:auto;
+   padding:10px;border-radius:26px
  }
  .heroCouple{transform:none}
  .eyebrow{margin-top:10px}
@@ -147,9 +178,11 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
  <div class="heroMain">
   <div class="heroTop">
    <div class="brand"><div class="brandMark"><span class="brandDot"></span>Travel Journal</div><div class="shareHint">18–27 сентября 2026</div></div>
-   <div class="eyebrow">Indian Ocean · Mauritius</div>
-   <h1>Стамбул →<br>Маврикий</h1>
-   <p class="heroSub">Один маршрут на десять дней: перелёты, отели, сафари, китовая прогулка, Le Morne, Chamarel и север острова — без хаоса между бронями и чатами.</p>
+   <div class="heroText">
+    <div class="eyebrow">Indian Ocean · Mauritius</div>
+    <h1>Стамбул →<br>Маврикий</h1>
+    <p class="heroSub">Один маршрут на десять дней: перелёты, отели, сафари, китовая прогулка, Le Morne, Chamarel и север острова — без хаоса между бронями и чатами.</p>
+   </div>
   </div>
   <div class="heroCoupleWrap">
    <img class="heroCouple" src="hero-couple-flipped.png" alt="Фотография пары на яхте">
