@@ -73,6 +73,31 @@ h1{font-size:clamp(48px,9vw,92px);line-height:.9;letter-spacing:-.065em;margin:1
 .footerCard{margin-top:22px;padding:21px 22px;background:#061b1d;color:#cde0dd;border-radius:24px;font-size:13px;line-height:1.65}.footerCard strong{color:#fff}
 footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
 
+
+.timelineTools{
+ display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px
+}
+.toolBtn{
+ appearance:none;border:1px solid var(--line);background:#fff;color:#385256;
+ padding:9px 12px;border-radius:12px;font:inherit;font-size:12px;font-weight:800;
+ cursor:pointer
+}
+.toolBtn:hover{border-color:#8fc9bd;background:#f3fbf8;color:#12665e}
+.dayHead{cursor:pointer;transition:background .18s ease}
+.dayHead:hover{background:#f7fbf9}
+.dayHead:focus-visible{outline:3px solid rgba(13,120,111,.22);outline-offset:-3px}
+.dayHeadMain{min-width:0}.dayHeadSide{display:flex;align-items:center;gap:8px}
+.chevron{width:31px;height:31px;border-radius:10px;border:1px solid #dbe7e3;display:grid;place-items:center;color:#4d6668;background:#fff;transition:transform .2s ease,background .2s ease}
+.day.collapsed .chevron{transform:rotate(-90deg)}
+.day.collapsed .events{display:none}
+.day.past{opacity:.78}.day.past .dayBadge{background:#f0f3f2;color:#75817f}
+.day.current{border-color:#9fd0c6;box-shadow:0 18px 55px rgba(13,120,111,.13)}
+.day.current .dayHead{background:#f2faf7}.day.current .dayBadge{background:#0d786f;color:#fff}
+.day.upcoming .dayBadge{background:#e7f5f0;color:#29655f}
+.dayState{font-size:10px;font-weight:850;letter-spacing:.02em;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.dayState.pastState{background:#f1f3f2;color:#7b8583}.dayState.currentState{background:#dff4ed;color:#0c6d62}.dayState.nextState{background:#edf4ff;color:#4f6597}
+@media(max-width:720px){.dayHeadSide{gap:6px}.dayState{display:none}}
+
 @media(max-width:720px){
  .app{padding:8px 9px 48px}.hero{min-height:620px;border-radius:28px;padding:23px 20px}
  .eyebrow{margin-top:85px}.heroBottom{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
@@ -121,6 +146,11 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
  </div>
 </section>
 
+<div class="timelineTools" aria-label="Управление таймлайном">
+ <button class="toolBtn" type="button" id="goToday">◎ Актуальный день</button>
+ <button class="toolBtn" type="button" id="collapseAll">Свернуть все</button>
+ <button class="toolBtn" type="button" id="expandAll">Развернуть все</button>
+</div>
 <main id="timeline"></main>
 
 <div class="footerCard">
@@ -145,11 +175,91 @@ calcCountdown(); setInterval(calcCountdown,60000);
 
 const nav=document.getElementById("nav");
 const tl=document.getElementById("timeline");
+const collapseAllBtn=document.getElementById("collapseAll");
+const expandAllBtn=document.getElementById("expandAll");
+const goTodayBtn=document.getElementById("goToday");
+
+const tripDates = [
+ "2026-09-18","2026-09-19","2026-09-20","2026-09-21","2026-09-22",
+ "2026-09-23","2026-09-24","2026-09-25","2026-09-26","2026-09-27"
+];
+
+function localISODate(){
+ const now=new Date();
+ const y=now.getFullYear();
+ const m=String(now.getMonth()+1).padStart(2,"0");
+ const d=String(now.getDate()).padStart(2,"0");
+ return `${y}-${m}-${d}`;
+}
+
+function getFocusIndex(){
+ const today=localISODate();
+ const first=tripDates[0];
+ const last=tripDates[tripDates.length-1];
+ if(today<first) return 0;
+ if(today>last) return tripDates.length-1;
+ const exact=tripDates.indexOf(today);
+ if(exact>=0) return exact;
+ const next=tripDates.findIndex(d=>d>today);
+ return next>=0?next:tripDates.length-1;
+}
+
+function setCollapsed(day,collapsed){
+ day.classList.toggle("collapsed",collapsed);
+ const head=day.querySelector(".dayHead");
+ head.setAttribute("aria-expanded",String(!collapsed));
+}
+
+function scrollToFocus(smooth=true){
+ const idx=getFocusIndex();
+ const target=document.getElementById("day"+(idx+1));
+ if(!target) return;
+ setCollapsed(target,false);
+ target.scrollIntoView({behavior:smooth?"smooth":"auto",block:"start"});
+}
+
+const todayISO=localISODate();
+const focusIndex=getFocusIndex();
+
 DATA.days.forEach((d,idx)=>{
  const id="day"+(idx+1);
- const link=document.createElement("a"); link.href="#"+id; link.textContent=d.date.replace(" сентября"," сен"); nav.appendChild(link);
- const day=document.createElement("section"); day.id=id; day.className="day";
- day.innerHTML=`<div class="dayHead"><div><div><span class="dayDate">${d.date}</span><span class="dow">${d.dow}</span></div><div class="summary">${d.summary}</div></div><span class="dayBadge">День ${idx+1}</span></div><div class="events"></div>`;
+ const iso=tripDates[idx];
+ const isPast=iso<todayISO;
+ const isCurrent=iso===todayISO;
+ const isFocus=idx===focusIndex;
+
+ const link=document.createElement("a");
+ link.href="#"+id;
+ link.textContent=d.date.replace(" сентября"," сен");
+ nav.appendChild(link);
+
+ const day=document.createElement("section");
+ day.id=id;
+ day.className="day";
+ if(isPast) day.classList.add("past");
+ else if(isCurrent) day.classList.add("current");
+ else day.classList.add("upcoming");
+
+ let stateLabel="";
+ let stateClass="";
+ if(isCurrent){stateLabel="Сегодня";stateClass="currentState"}
+ else if(isPast){stateLabel="Прошёл";stateClass="pastState"}
+ else if(isFocus && todayISO<tripDates[0]){stateLabel="Первый день";stateClass="nextState"}
+ else if(isFocus){stateLabel="Актуальный";stateClass="nextState"}
+
+ day.innerHTML=`<div class="dayHead" role="button" tabindex="0" aria-expanded="true" aria-controls="${id}-events">
+   <div class="dayHeadMain">
+     <div><span class="dayDate">${d.date}</span><span class="dow">${d.dow}</span></div>
+     <div class="summary">${d.summary}</div>
+   </div>
+   <div class="dayHeadSide">
+     ${stateLabel?`<span class="dayState ${stateClass}">${stateLabel}</span>`:""}
+     <span class="dayBadge">День ${idx+1}</span>
+     <span class="chevron" aria-hidden="true">⌄</span>
+   </div>
+ </div>
+ <div class="events" id="${id}-events"></div>`;
+
  const wrap=day.querySelector(".events");
  d.events.forEach(e=>{
   const status=e.status?`<div class="status ${e.statusKind||""}">${e.status}</div>`:"";
@@ -158,9 +268,40 @@ DATA.days.forEach((d,idx)=>{
   if(e.route) acts+=`<a class="btn" href="${e.route}" target="_blank" rel="noopener">🚗 Маршрут</a>`;
   if(e.booking) acts+=`<a class="btn" href="${e.booking}" target="_blank" rel="noopener">↗ Бронь / сайт</a>`;
   wrap.insertAdjacentHTML("beforeend",`<article class="event"><div class="time">${e.time}</div><div class="icon">${e.badge||"•"}</div><div class="eventBody">${status}<h3>${e.title}</h3><div class="meta">${e.meta||""}</div>${e.note?`<div class="note">${e.note}</div>`:""}${acts?`<div class="actions">${acts}</div>`:""}</div></article>`)
- })
+ });
+
+ const head=day.querySelector(".dayHead");
+ const toggle=()=>setCollapsed(day,!day.classList.contains("collapsed"));
+ head.addEventListener("click",toggle);
+ head.addEventListener("keydown",ev=>{
+  if(ev.key==="Enter"||ev.key===" "){
+   ev.preventDefault();
+   toggle();
+  }
+ });
+
+ // До поездки оставляем весь план раскрытым — удобно готовиться.
+ // Во время поездки автоматически сворачиваем только прошедшие дни.
+ // После поездки оставляем раскрытым последний день.
+ let initiallyCollapsed=false;
+ if(todayISO<tripDates[0]) initiallyCollapsed=false;
+ else if(todayISO>tripDates[tripDates.length-1]) initiallyCollapsed=idx!==tripDates.length-1;
+ else initiallyCollapsed=isPast;
+ setCollapsed(day,initiallyCollapsed);
  tl.appendChild(day);
 });
+
+collapseAllBtn.addEventListener("click",()=>{
+ document.querySelectorAll(".day").forEach(day=>setCollapsed(day,true));
+});
+expandAllBtn.addEventListener("click",()=>{
+ document.querySelectorAll(".day").forEach(day=>setCollapsed(day,false));
+});
+goTodayBtn.addEventListener("click",()=>scrollToFocus(true));
+
+if(todayISO>=tripDates[0] && todayISO<=tripDates[tripDates.length-1]){
+ requestAnimationFrame(()=>setTimeout(()=>scrollToFocus(false),80));
+}
 </script>
 </body>
 </html>
