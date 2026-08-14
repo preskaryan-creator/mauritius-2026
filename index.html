@@ -26,6 +26,17 @@ a{color:inherit}.app{max-width:1040px;margin:auto;padding:14px 18px 72px}
  box-shadow:0 32px 80px rgba(3,30,32,.22);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(2,15,18,.52));pointer-events:none}
 .heroTop,.heroBottom{position:relative;z-index:2}
+.heroCoupleWrap{
+ position:absolute;right:24px;bottom:24px;z-index:1;
+ width:min(43%,430px);pointer-events:none
+}
+.heroCouple{
+ display:block;width:100%;height:auto;
+ border-radius:28px;
+ box-shadow:0 24px 70px rgba(0,0,0,.28);
+ border:1px solid rgba(255,255,255,.22);
+ transform:rotate(2deg)
+}
 .brand{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brandMark{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .brandDot{width:11px;height:11px;border-radius:99px;background:#9ff1df;box-shadow:0 0 0 7px rgba(159,241,223,.12)}
@@ -99,11 +110,26 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
 @media(max-width:720px){.dayHeadSide{gap:6px}.dayState{display:none}}
 
 @media(max-width:720px){
- .app{padding:8px 9px 48px}.hero{min-height:620px;border-radius:28px;padding:23px 20px}
- .eyebrow{margin-top:85px}.heroBottom{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
- .overview{grid-template-columns:1fr}.routeStrip{grid-template-columns:1fr 1fr}.stop:nth-child(2):after{display:none}
- .day{border-radius:23px}.dayHead{padding:18px 16px}.events{padding:5px 14px 13px}
- .event{grid-template-columns:55px 38px 1fr;gap:8px}.event:not(:last-child):after{left:73px}.time{font-size:11px}.eventBody h3{font-size:16px}
+ .app{padding:8px 9px 48px}
+ .hero{min-height:760px;border-radius:28px;padding:23px 20px}
+ .heroCoupleWrap{
+   right:50%;bottom:132px;transform:translateX(50%);
+   width:min(82%,360px)
+ }
+ .heroCouple{transform:none}
+ .eyebrow{margin-top:85px}
+ .heroBottom{grid-template-columns:1fr}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .overview{grid-template-columns:1fr}
+ .routeStrip{grid-template-columns:1fr 1fr}
+ .stop:nth-child(2):after{display:none}
+ .day{border-radius:23px}
+ .dayHead{padding:18px 16px}
+ .events{padding:5px 14px 13px}
+ .event{grid-template-columns:55px 38px 1fr;gap:8px}
+ .event:not(:last-child):after{left:73px}
+ .time{font-size:11px}
+ .eventBody h3{font-size:16px}
 }
 </style>
 </head>
@@ -115,6 +141,9 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
   <div class="eyebrow">Indian Ocean · Mauritius</div>
   <h1>Стамбул →<br>Маврикий</h1>
   <p class="heroSub">Один маршрут на десять дней: перелёты, отели, сафари, китовая прогулка, Le Morne, Chamarel и север острова — без хаоса между бронями и чатами.</p>
+ </div>
+ <div class="heroCoupleWrap">
+  <img class="heroCouple" src="hero-couple-flipped.png" alt="Фотография пары на яхте">
  </div>
  <div class="heroBottom">
   <div class="stats">
