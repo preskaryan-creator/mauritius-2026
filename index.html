@@ -206,6 +206,27 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
  .paymentCurrencies{text-align:left}
 }
 
+
+.paymentSectionTitle{
+ margin:18px 0 10px;font-size:14px;font-weight:850;color:#e8f5f2;
+ letter-spacing:.01em
+}
+.paymentSectionTitle.second{margin-top:24px}
+.paymentSubtotal{
+ margin-top:9px;padding:12px 14px;border-radius:15px;
+ display:flex;justify-content:space-between;gap:16px;align-items:center;
+ background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);
+ font-size:12px;color:#cfe3df
+}
+.paymentSubtotal strong{color:#fff;font-size:14px;text-align:right}
+.paymentSubtotal.optional{background:rgba(255,255,255,.04)}
+.paymentTotal.grand{margin-top:18px}
+.grandAlt{margin-top:5px;font-size:13px;font-weight:750;color:#49706b}
+@media(max-width:720px){
+ .paymentSubtotal{align-items:flex-start;flex-direction:column}
+ .paymentSubtotal strong{text-align:left}
+}
+
 </style>
 </head>
 <body>
@@ -262,35 +283,66 @@ footer{text-align:center;color:#879294;font-size:12px;margin-top:22px}
 <main id="timeline"></main>
 
 
-<section class="paymentSummary" aria-label="Осталось оплатить">
+
+<section class="paymentSummary" aria-label="Финансы поездки">
  <div class="paymentSummaryHead">
   <div>
-   <div class="cardKicker" style="color:#b9d6d1">Уже забронировано</div>
-   <div class="paymentSummaryTitle">Осталось оплатить</div>
-   <div class="paymentSummarySub">Только подтверждённые брони с известным остатком оплаты</div>
+   <div class="cardKicker" style="color:#b9d6d1">Финансовый итог</div>
+   <div class="paymentSummaryTitle">Оставшиеся расходы по программе</div>
+   <div class="paymentSummarySub">Оплаченные отели на Маврикии и Casela сюда не включены</div>
   </div>
  </div>
+
+ <div class="paymentSectionTitle">1. Доплаты по уже забронированному</div>
  <div class="paymentGrid">
-  <div class="paymentItem"><small>🚙 Аренда автомобиля</small><strong>€267,68</strong></div>
+  <div class="paymentItem"><small>🚙 Аренда автомобиля</small><strong>€267 68</strong></div>
   <div class="paymentItem"><small>🐋 Плавание с китами</small><strong>9 000 MUR ≈ €165.05</strong></div>
   <div class="paymentItem"><small>🚤 Морская прогулка 24 сентября</small><strong>22 000 MUR ≈ €403.46</strong></div>
   <div class="paymentItem"><small>🏨 Hilton Istanbul Maslak</small><strong>€212 29</strong></div>
  </div>
- <div class="paymentTotal">
+ <div class="paymentSubtotal">
+  <span>Итого по забронированному</span>
+  <strong>31 000 MUR + €479 97 ≈ €1048.48</strong>
+ </div>
+
+ <div class="paymentSectionTitle second">2. Прочие платные активности из плана</div>
+ <div class="paymentGrid">
+  <div class="paymentItem"><small>Vallée Advenature Park</small><strong>3 800 MUR ≈ €69.69</strong></div>
+  <div class="paymentItem"><small>Bois Chéri Tea Factory & Museum</small><strong>1 600 MUR ≈ €29.34</strong></div>
+  <div class="paymentItem"><small>Chamarel Seven Colored Earth</small><strong>1 600 MUR ≈ €29.34</strong></div>
+  <div class="paymentItem"><small>Ebony Forest Reserve</small><strong>1 200 MUR ≈ €22.01</strong></div>
+  <div class="paymentItem"><small>Château de Labourdonnais</small><strong>1 500 MUR ≈ €27.51</strong></div>
+  <div class="paymentItem"><small>Pamplemousses Botanical Garden</small><strong>600 MUR ≈ €11.00</strong></div>
+  <div class="paymentItem"><small>L’Aventure du Sucre</small><strong>2 400 MUR ≈ €44.01</strong></div>
+  <div class="paymentItem"><small>Le Morne Brabant с гидом • опционально</small><strong>7 000 MUR ≈ €128.37</strong></div>
+ </div>
+ <div class="paymentSubtotal">
+  <span>Без опционального Le Morne</span>
+  <strong>12 700 MUR ≈ €232.90</strong>
+ </div>
+ <div class="paymentSubtotal optional">
+  <span>С Le Morne Brabant и гидом</span>
+  <strong>19 700 MUR ≈ €361.28</strong>
+ </div>
+
+ <div class="paymentTotal grand">
   <div>
-   <small>Общий эквивалент</small>
-   <strong>≈ €1 048.48</strong>
+   <small>Общий бюджет оставшихся оплат</small>
+   <strong>≈ €1281.38</strong>
+   <div class="grandAlt">или ≈ €1409.75 с Le Morne Brabant</div>
   </div>
   <div class="paymentCurrencies">
-   Фактически к оплате:<br>
-   <b>31 000 MUR + €479.97</b>
+   Без Le Morne:<br><b>43 700 MUR + €479 97</b><br><br>
+   С Le Morne:<br><b>50 700 MUR + €479 97</b>
   </div>
  </div>
+
  <div class="paymentNote">
-  EUR-эквивалент для сумм в рупиях рассчитан по тому же ориентировочному курсу сайта:
-  1 MUR ≈ €0.01834. Реальная сумма в евро будет зависеть от курса на день оплаты.
+  EUR-эквиваленты рассчитаны по ориентировочному курсу 1 MUR ≈ €0.01834.
+  Фактические суммы в евро зависят от курса на день оплаты. Цены «от» и ориентировочные тарифы могут измениться.
  </div>
 </section>
+
 
 <div class="footerCard">
 <strong>Как пользоваться в поездке.</strong> Цены пересчитаны ориентировочно по курсу 1 MUR ≈ €0.01834 на 26.08.2026; перед оплатой лучше проверить курс и актуальный тариф.<br><br><strong>Навигация.</strong> Нажимайте «Карта» для самой точки и «Маршрут» — чтобы Google Maps сразу построил дорогу от предыдущей локации. Время с символом ≈ ориентировочное: актуальный ETA лучше смотреть непосредственно перед выездом. Для китов точка старта уже указана — Black River; для вертолёта точка сбора уточняется после бронирования.
